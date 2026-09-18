@@ -1,148 +1,640 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shalini &amp; Prakash — Wedding Invitation</title>
-    <meta name="description" content="You are cordially invited to the grand wedding of Shalini and Prakash. Tap the antique lion doorknocker to enter the royal palace." />
-    
-    <!-- Google Fonts: Royal serif typography -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-    
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <main id="intro" class="intro" aria-label="Grand wedding entrance — tap the doorknocker to enter">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Om Prakash ♥ Shalini — Wedding Invitation & Cinematic Story</title>
+  <meta name="description" content="You are cordially invited to the grand wedding of Arugonda Shalini and Gurram Om Prakash. Tap the antique lion doorknocker to enter the royal palace and experience our cinematic photo journey." />
+  
+  <!-- OpenGraph / Social Media sharing -->
+  <meta property="og:title" content="Om Prakash ♥ Shalini — Wedding Invitation" />
+  <meta property="og:description" content="Together with their families, invite you to celebrate their wedding on 06 December 2026. Tap to open!" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/photos/hero.png" />
 
-      <!-- Ambient Palace Lighting -->
-      <div class="palace-ambient-glow" aria-hidden="true"></div>
+  <!-- Google Fonts: Royal serif & Editorial typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
 
-      <!-- ═══ THE PALACE STAGE (Exact 3:4 Proportional Stage for border.png) ═══ -->
-      <div class="palace-stage" id="palace-stage">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
 
-        <!-- LAYER 1: REVEALED PALACE INTERIOR (Behind the arch opening) -->
-        <div class="sanctum-chamber" aria-hidden="true">
-          <img src="assets/interior_hall.png" class="sanctum-bg" alt="" />
-          <div class="sanctum-glow"></div>
+  <!-- Background Ambience & Film Grain Overlay -->
+  <div class="film-grain" aria-hidden="true"></div>
+  <div class="vignette-overlay" aria-hidden="true"></div>
+
+  <!-- Audio Player Floating Control (Discreet) -->
+  <div id="audio-control" class="audio-control hidden" title="Toggle Music">
+    <button id="audio-btn" class="audio-btn" aria-label="Toggle ambient music">
+      <div class="sound-wave" id="sound-wave">
+        <span></span><span></span><span></span><span></span>
+      </div>
+      <span class="audio-label" id="audio-label">SOUND ON</span>
+    </button>
+  </div>
+
+  <!-- Floating Minimal Navigation (Visible during story) -->
+  <nav id="story-nav" class="story-nav hidden" aria-label="Quick navigation">
+    <a href="#prologue" class="nav-link active" data-target="prologue">Story</a>
+    <a href="#wedding-reveal" class="nav-link" data-target="wedding-reveal">The Couple</a>
+    <a href="#event-wedding" class="nav-link" data-target="event-wedding">Wedding</a>
+    <a href="#event-reception" class="nav-link" data-target="event-reception">Reception</a>
+    <a href="#rsvp-section" class="nav-link" data-target="rsvp-section">RSVP</a>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- STEP 1: GRAND PALACE DOOR ENTRY + LORD GANESHA ON SWING            -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <main id="intro" class="intro" aria-label="Grand wedding entrance — tap the doorknocker to enter">
+
+    <!-- Ambient Palace Lighting -->
+    <div class="palace-ambient-glow" aria-hidden="true"></div>
+
+    <!-- THE PALACE STAGE (Exact 3:4 Proportional Stage for border.png) -->
+    <div class="palace-stage" id="palace-stage">
+
+      <!-- LAYER 1: REVEALED PALACE INTERIOR (Behind the arch opening) -->
+      <div class="sanctum-chamber" aria-hidden="true">
+        <img src="assets/interior_hall.png" class="sanctum-bg" alt="" />
+        <div class="sanctum-glow"></div>
+      </div>
+
+      <!-- LAYER 2: LORD GANESHA ON HANGING SWING (Front-to-back swing) -->
+      <div class="ganesha-portal" aria-hidden="true">
+        <div class="ganesha-swing-rig" id="ganesha-rig">
+          <div class="ganesha-divine-halo"></div>
+          <img src="assets/ganesha.png" class="ganesha-art" alt="Lord Ganesha on Royal Swing" />
+          <div class="swing-floor-shadow"></div>
         </div>
+      </div>
 
-        <!-- LAYER 2: LORD GANESHA ON HANGING SWING (Front-to-back swing) -->
-        <div class="ganesha-portal" aria-hidden="true">
-          <div class="ganesha-swing-rig" id="ganesha-rig">
-            <div class="ganesha-divine-halo"></div>
-            <img src="assets/ganesha.png" class="ganesha-art" alt="Lord Ganesha on Royal Swing" />
-            <div class="swing-floor-shadow"></div>
-          </div>
+      <!-- LAYER 3: LIGHT BEAM & FLOOR LIGHT SPILL -->
+      <div class="door-light-beam" id="light-beam" aria-hidden="true"></div>
+      <div class="floor-light-spill" id="floor-spill" aria-hidden="true"></div>
+
+      <!-- LAYER 4: ARCHITECTURAL DOORWAY & 3D PEACOCK DOUBLE DOORS -->
+      <div class="doorway-container" id="doorway">
+        <!-- Left peacock door leaf -->
+        <div class="door-leaf door-leaf-left" id="door-left">
+          <img src="assets/door_leaf_left.png" class="door-img" alt="Left peacock palace door" />
+          <div class="door-soft-edge"></div>
         </div>
-
-        <!-- LAYER 3: LIGHT BEAM & FLOOR LIGHT SPILL -->
-        <div class="door-light-beam" id="light-beam" aria-hidden="true"></div>
-        <div class="floor-light-spill" id="floor-spill" aria-hidden="true"></div>
-
-        <!-- LAYER 4: ARCHITECTURAL DOORWAY & 3D PEACOCK DOUBLE DOORS -->
-        <div class="doorway-container" id="doorway">
-          <!-- Left peacock door leaf -->
-          <div class="door-leaf door-leaf-left" id="door-left">
-            <img src="assets/door_leaf_left.png" class="door-img" alt="Left peacock palace door" />
-            <div class="door-soft-edge"></div>
-          </div>
-          <!-- Right peacock door leaf -->
-          <div class="door-leaf door-leaf-right" id="door-right">
-            <img src="assets/door_leaf_right.png" class="door-img" alt="Right peacock palace door" />
-            <div class="door-soft-edge"></div>
-          </div>
-          <!-- Seam shadow -->
-          <div class="door-seam-line" id="door-seam"></div>
+        <!-- Right peacock door leaf -->
+        <div class="door-leaf door-leaf-right" id="door-right">
+          <img src="assets/door_leaf_right.png" class="door-img" alt="Right peacock palace door" />
+          <div class="door-soft-edge"></div>
         </div>
+        <!-- Seam shadow -->
+        <div class="door-seam-line" id="door-seam"></div>
+      </div>
 
-        <!-- LAYER 5: THE GRAND ARCHITECTURAL PALACE BORDER FRAME -->
-        <!-- Contains the pink lotus crown, the columns, the elephants, and the marble floor with rangoli -->
-        <img src="assets/palace_frame.png" class="palace-frame-img" alt="Palace entrance frame with lotus crown and royal elephants" aria-hidden="true" />
+      <!-- LAYER 5: THE GRAND ARCHITECTURAL PALACE BORDER FRAME -->
+      <img src="assets/palace_frame.png" class="palace-frame-img" alt="Palace entrance frame with lotus crown and royal elephants" aria-hidden="true" />
 
-        <!-- LAYER 6: INTERACTIVE LION DOORKNOCKER (Upper Center Axis) -->
-        <div class="knocker-overlay" id="knocker-zone">
-          <button
-            class="knocker-btn"
-            id="door-knocker"
-            type="button"
-            aria-label="Open the wedding entrance"
-          >
-            <!-- Animated 3D Knocker Ring for Pressed State -->
-            <span class="knocker-physical-ring" id="knocker-ring" aria-hidden="true"></span>
-            <span class="knocker-halo-pulse" aria-hidden="true"></span>
-          </button>
-        </div>
-
-        <!-- LAYER 7: BOTTOM INSTRUCTION (Moved to bottom marble floor, clearly visible) -->
-        <div class="bottom-instruction" id="knocker-hint">
-          <div class="hint-ornament-line">
-            <span class="hint-dash"></span>
-            <span class="hint-gem">✦</span>
-            <span class="hint-dash"></span>
-          </div>
-          <p class="hint-text">
-            <span class="line-1">TAP THE DOORKNOCKER</span>
-            <span class="line-2">TO ENTER</span>
-          </p>
-          <div class="hint-ornament-line">
-            <span class="hint-dash"></span>
-            <span class="hint-gem">✦</span>
-            <span class="hint-dash"></span>
-          </div>
-        </div>
-
-        <!-- LAYER 8: COUPLE NAMES & CEREMONIAL BLESSING (Over marble floor) -->
-        <div id="final-names" class="final-names" aria-live="polite">
-          <p class="blessing-invocation">|| श्री गणेशाय नमः ||</p>
-          <p class="eyebrow">Together with their families, cordially invite you to celebrate the wedding of</p>
-          <h1 class="couple-title">Shalini <span>&amp;</span> Prakash</h1>
-          <div class="wedding-date-line">
-            <span class="date-ornament">✦</span>
-            <span>DECEMBER 12, 2026</span>
-            <span class="date-ornament">✦</span>
-          </div>
-          <button type="button" class="btn-continue-invite" id="btn-continue" aria-label="View wedding invitation details">
-            <span>ENTER CELEBRATION</span>
-            <span class="arrow-down">▾</span>
-          </button>
-        </div>
-
-      </div><!-- /.palace-stage -->
-
-    </main><!-- /#intro -->
-
-    <!-- ═══ WEDDING WEBSITE INVITATION SECTION ═══ -->
-    <section id="website" class="website" aria-label="Wedding website content">
-      <div class="website-ambient-bg"></div>
-      <div class="website-card">
-        <p class="card-subtitle">WE ARE GETTING MARRIED</p>
-        <h2 class="card-title">Shalini &amp; Prakash</h2>
-        <div class="card-divider"></div>
-        <p class="card-text">
-          We invite you to be a part of this sacred union of two souls, surrounded by divine blessings, family, and lifelong memories.
-        </p>
-        <div class="card-details">
-          <div class="detail-item">
-            <span class="detail-label">DATE</span>
-            <span class="detail-val">Saturday, 12 December 2026</span>
-          </div>
-          <div class="detail-item">
-            <span class="detail-label">MUHURTHAM</span>
-            <span class="detail-val">10:30 AM – 11:45 AM</span>
-          </div>
-          <div class="detail-item">
-            <span class="detail-label">VENUE</span>
-            <span class="detail-val">The Royal Grand Palace, Bangalore</span>
-          </div>
-        </div>
-        <button type="button" class="btn-replay" id="btn-replay">
-          <span>↺ REPLAY ENTRANCE</span>
+      <!-- LAYER 6: INTERACTIVE LION DOORKNOCKER (Upper Center Axis) -->
+      <div class="knocker-overlay" id="knocker-zone">
+        <button
+          class="knocker-btn"
+          id="door-knocker"
+          type="button"
+          aria-label="Open the wedding entrance"
+        >
+          <!-- Animated 3D Knocker Ring for Pressed State -->
+          <span class="knocker-physical-ring" id="knocker-ring" aria-hidden="true"></span>
+          <span class="knocker-halo-pulse" aria-hidden="true"></span>
         </button>
+      </div>
+
+      <!-- LAYER 7: BOTTOM INSTRUCTION (On bottom marble floor) -->
+      <div class="bottom-instruction" id="knocker-hint">
+        <div class="hint-ornament-line">
+          <span class="hint-dash"></span>
+          <span class="hint-gem">✦</span>
+          <span class="hint-dash"></span>
+        </div>
+        <p class="hint-text">
+          <span class="line-1">TAP THE DOORKNOCKER</span>
+          <span class="line-2">TO ENTER</span>
+        </p>
+        <div class="hint-ornament-line">
+          <span class="hint-dash"></span>
+          <span class="hint-gem">✦</span>
+          <span class="hint-dash"></span>
+        </div>
+      </div>
+
+      <!-- LAYER 8: COUPLE NAMES & CEREMONIAL BLESSING (Over marble floor) -->
+      <div id="final-names" class="final-names" aria-live="polite">
+        <p class="blessing-invocation">|| श्री गणेशाय नमः ||</p>
+        <p class="eyebrow">Together with their families, cordially invite you to celebrate the wedding of</p>
+        <h1 class="couple-title">Shalini <span>&amp;</span> Om Prakash</h1>
+        <div class="wedding-date-line">
+          <span class="date-ornament">✦</span>
+          <span>06 DECEMBER 2026</span>
+          <span class="date-ornament">✦</span>
+        </div>
+        <button type="button" class="btn-continue-invite" id="btn-continue" aria-label="View wedding invitation details">
+          <span>ENTER INVITATION &amp; OUR STORY</span>
+          <span class="arrow-down">▾</span>
+        </button>
+      </div>
+
+    </div><!-- /.palace-stage -->
+
+  </main><!-- /#intro -->
+
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- STEP 2: WELCOME / INVITATION LANDING SCREEN                        -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <section id="landing-screen" class="landing-screen hidden">
+    <div class="landing-bg-container">
+      <img src="assets/photos/hero.png" alt="Shalini and Om Prakash" class="landing-hero-img" />
+      <div class="landing-scrim"></div>
+    </div>
+
+    <div class="landing-content">
+      <div class="monogram-badge">
+        <span class="monogram-letter">S</span>
+        <span class="monogram-heart">♥</span>
+        <span class="monogram-letter">O</span>
+      </div>
+
+      <p class="landing-invitation-pre">Together with their families</p>
+      
+      <div class="families-grid">
+        <!-- BRIDE FIRST -->
+        <div class="family-card bride-card">
+          <span class="role-tag">The Bride</span>
+          <h2 class="person-name">ARUGONDA SHALINI</h2>
+          <div class="parents-info">
+            <p class="parent-line"><span class="parent-label">Mother:</span> <strong>Arugonda Laxmi</strong></p>
+            <p class="parent-line"><span class="parent-label">Father:</span> <strong>Arugonda Madhusudhan</strong></p>
+          </div>
+        </div>
+
+        <div class="union-divider">
+          <span class="knot-symbol">❧</span>
+          <span class="ampersand">&</span>
+          <span class="knot-symbol">❧</span>
+        </div>
+
+        <!-- GROOM SECOND -->
+        <div class="family-card groom-card">
+          <span class="role-tag">The Groom</span>
+          <h2 class="person-name">GURRAM OM PRAKASH</h2>
+          <div class="parents-info">
+            <p class="parent-line"><span class="parent-label">Mother:</span> <strong>Gurram Aruna</strong></p>
+            <p class="parent-line"><span class="parent-label">Father:</span> <strong>Gurram Chandra Shekar</strong></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="date-callout">
+        <span class="date-line"></span>
+        <h3 class="wedding-date-hero">06 DECEMBER 2026</h3>
+        <span class="date-line"></span>
+      </div>
+
+      <blockquote class="landing-quote">
+        “Together with their families,<br />
+        they invite you to celebrate<br />
+        the beginning of their forever.”
+      </blockquote>
+
+      <!-- Clear Interactive Action -->
+      <button id="enter-story-btn" class="enter-btn" aria-label="Enter our story">
+        <span class="btn-text">ENTER OUR STORY</span>
+        <span class="btn-arrow">→</span>
+      </button>
+
+      <p class="audio-hint">♫ Tap to begin the cinematic journey</p>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- STEP 3: CINEMATIC CURTAIN & PROLOGUE                               -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <div id="cinematic-curtain" class="cinematic-curtain">
+    <div class="curtain-content">
+      <p id="prologue-line1" class="curtain-subtitle">“Before we tell you our story…”</p>
+      <p id="prologue-line2" class="curtain-subtitle delay-1">“Let us take you back to where it began.”</p>
+    </div>
+  </div>
+
+  <!-- MAIN CINEMATIC EXPERIENCE CONTAINER -->
+  <main id="cinematic-journey" class="cinematic-journey hidden">
+
+    <!-- PROLOGUE ALBUM REVEAL -->
+    <section id="prologue" class="chapter-frame prologue-frame">
+      <div class="frame-photo-wrap developing-wrap">
+        <img src="assets/photos/prologue.png" alt="A developing vintage photograph of holding hands" class="developing-photo" />
+      </div>
+      <div class="frame-caption">
+        <span class="cinematic-eyebrow">Prologue</span>
+        <h1 class="main-title">OUR MEMORIES</h1>
+        <p class="main-subtitle">A Cinematic Photo Journey</p>
+        <div class="scroll-cue">
+          <span>Scroll to begin the journey</span>
+          <div class="scroll-arrow">↓</div>
+        </div>
       </div>
     </section>
 
-    <script src="script.js"></script>
-  </body>
+    <!-- CHAPTER 01: THE ARRANGED MEETING -->
+    <section id="chapter-1" class="chapter-frame" data-chapter="1">
+      <div class="photo-stage">
+        <img src="assets/photos/chapter1.png" alt="Two strangers meeting for the first time in a warm cafe" class="cinema-photo ken-burns-1" />
+      </div>
+      <div class="subtitle-overlay">
+        <span class="chapter-num">CHAPTER 01</span>
+        <h2 class="chapter-title">THE ARRANGED MEETING</h2>
+        <div class="quote-block">
+          <p>“We agreed to meet…</p>
+          <p>because our families thought</p>
+          <p>we might be right for each other.</p>
+          <p class="emphasis-pause">But honestly…</p>
+          <p class="accent-text">neither of us knew what to expect.”</p>
+        </div>
+        <div class="mood-subtext">
+          <span>Two strangers. One meeting. An unexpected beginning.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHAPTER 02: THE FIRST CONVERSATION -->
+    <section id="chapter-2" class="chapter-frame" data-chapter="2">
+      <div class="photo-stage">
+        <img src="assets/photos/chapter2.png" alt="Om Prakash and Shalini sharing an easy laugh over tea" class="cinema-photo ken-burns-2" />
+      </div>
+      <div class="subtitle-overlay warm-card">
+        <span class="chapter-num">CHAPTER 02</span>
+        <h2 class="chapter-title">THE FIRST CONVERSATION</h2>
+        <div class="quote-block">
+          <p>“Then we finally met…</p>
+          <p>and somehow, our first conversation</p>
+          <p>felt surprisingly easy.</p>
+          <p class="emphasis-pause">No awkwardness…</p>
+          <p class="accent-text">just two strangers slowly getting comfortable.”</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHAPTER 03: CONNECTING ON INSTAGRAM -->
+    <section id="chapter-3" class="chapter-frame" data-chapter="3">
+      <div class="photo-stage">
+        <img src="assets/photos/chapter3.png" alt="Smiling softly at an Instagram message at twilight" class="cinema-photo ken-burns-1" />
+      </div>
+      <div class="subtitle-overlay">
+        <span class="chapter-num">CHAPTER 03</span>
+        <h2 class="chapter-title">CONNECTING ON INSTAGRAM</h2>
+        
+        <div class="dm-snippet-wrap">
+          <div class="dm-bubble left">Hey :) Did you reach home safely?</div>
+          <div class="dm-bubble right">Yes! Thank you for today… it was really nice.</div>
+        </div>
+
+        <div class="quote-block">
+          <p>“Then we connected on Instagram…</p>
+          <p>and slowly, the conversations began.</p>
+          <p class="emphasis-pause">A message here… a reply there…</p>
+          <p>and little by little,</p>
+          <p class="accent-text">we started talking more.”</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHAPTER 04: FEELINGS START DEVELOPING -->
+    <section id="chapter-4" class="chapter-frame" data-chapter="4">
+      <div class="photo-stage">
+        <img src="assets/photos/chapter4.png" alt="Walking together in golden hour sunshine" class="cinema-photo ken-burns-2" />
+      </div>
+      <div class="subtitle-overlay slow-fade">
+        <span class="chapter-num">CHAPTER 04</span>
+        <h2 class="chapter-title">FEELINGS START DEVELOPING</h2>
+        <div class="quote-block">
+          <p>“Somewhere between those conversations…</p>
+          <p>the smiles, the little jokes,</p>
+          <p>and knowing more about each other…</p>
+          <p class="emphasis-pause">something quietly changed.</p>
+          <p>We weren't just talking anymore…</p>
+          <p class="accent-text">we were becoming a part of each other's days.”</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHAPTER 05: SHE REALIZES WHY SHE'S SAYING YES -->
+    <section id="chapter-5" class="chapter-frame minimal-frame" data-chapter="5">
+      <div class="photo-stage">
+        <img src="assets/photos/chapter5.png" alt="Gentle and serene portrait of Shalini in soft light" class="cinema-photo ken-burns-1" />
+      </div>
+      <div class="subtitle-overlay breathing-space">
+        <span class="chapter-num">CHAPTER 05</span>
+        <h2 class="chapter-title">THE REALIZATION</h2>
+        <div class="quote-block emotional">
+          <p class="lead-line">“And then came the realization…</p>
+          <p>I wasn't saying yes</p>
+          <p>just because our families wanted it.</p>
+          <div class="heartfelt-highlight">
+            <p>I was saying yes because</p>
+            <p class="highlight-line">I had started wanting him</p>
+            <p class="highlight-line">in my life.”</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHAPTER 06: THEY CHOOSE EACH OTHER -->
+    <section id="chapter-6" class="chapter-frame" data-chapter="6">
+      <div class="photo-stage">
+        <img src="assets/photos/chapter6.png" alt="Holding hands against a breathtaking sunset sky" class="cinema-photo ken-burns-2" />
+      </div>
+      <div class="subtitle-overlay climax-card">
+        <span class="chapter-num">CHAPTER 06</span>
+        <div class="quote-block">
+          <p>“Our families may have brought us together…</p>
+          <p>but somewhere along the way,</p>
+          <p>we found our own reason to stay.</p>
+          <p class="small-contrast">They introduced us…</p>
+          <p class="small-contrast">but we chose each other.”</p>
+        </div>
+        <div class="major-climax-text">
+          <h1>WE CHOSE EACH OTHER.</h1>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHAPTER 07: THE PROPOSAL -->
+    <section id="chapter-7" class="chapter-frame proposal-frame" data-chapter="7">
+      <div class="photo-stage">
+        <img src="assets/photos/chapter7.png" alt="Om Prakash proposing to Shalini under fairy lights" class="cinema-photo proposal-img hidden-photo" id="proposal-img" />
+      </div>
+      <div class="subtitle-overlay proposal-reveal-wrap">
+        <span class="chapter-num">CHAPTER 07</span>
+        <h2 class="chapter-title">THE PROPOSAL</h2>
+        
+        <div class="proposal-steps" id="proposal-steps">
+          <p class="prop-step step-1" id="prop-step-1">“Then came the question…”</p>
+          <p class="prop-step step-2" id="prop-step-2">“And this time, I already knew my answer.”</p>
+          <div class="prop-step step-3" id="prop-step-3">
+            <span class="yes-reveal">YES. ❤️</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHAPTER 08: FOREVER BEGINS -->
+    <section id="chapter-8" class="chapter-frame" data-chapter="8">
+      <div class="photo-stage">
+        <img src="assets/photos/chapter8.png" alt="Om Prakash and Shalini in royal wedding attire" class="cinema-photo ken-burns-1" />
+      </div>
+      <div class="subtitle-overlay forever-card">
+        <span class="chapter-num">CHAPTER 08</span>
+        <h2 class="chapter-title">FOREVER BEGINS</h2>
+        <div class="quote-block">
+          <p>“What started as an arranged meeting…</p>
+          <p>slowly became friendship,</p>
+          <p>then became love,</p>
+          <p class="accent-text">and finally became forever.”</p>
+        </div>
+        <div class="forever-conclusion">
+          <p>“Two families brought us together…</p>
+          <p>two hearts chose each other…</p>
+          <p>and now,</p>
+          <p class="forever-highlight">our forever begins.”</p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- 4 & 5. WEDDING REVEAL & BRIDE & GROOM DETAILS                       -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section id="wedding-reveal" class="wedding-reveal-section">
+      <div class="reveal-inner">
+        <div class="reveal-monogram">
+          <span>❧</span>
+          <span class="flourish">S & O</span>
+          <span>❧</span>
+        </div>
+
+        <h1 class="couple-headline">OM PRAKASH ♥ SHALINI</h1>
+        <p class="forever-tag">OUR FOREVER BEGINS</p>
+        <div class="date-banner">
+          <span class="ornament-line"></span>
+          <h2 class="date-text">06 DECEMBER 2026</h2>
+          <span class="ornament-line"></span>
+        </div>
+
+        <!-- Strict Hierarchy: Bride First, Groom Second, Mother before Father -->
+        <div class="formal-family-grid">
+          <!-- BRIDE FIRST -->
+          <div class="formal-card bride-formal">
+            <span class="formal-role">The Bride</span>
+            <h3 class="formal-name">Arugonda Shalini</h3>
+            <div class="formal-parents">
+              <p class="formal-parent-row">
+                <span class="parent-badge">Mother</span>
+                <span class="parent-val">Arugonda Laxmi</span>
+              </p>
+              <p class="formal-parent-row">
+                <span class="parent-badge">Father</span>
+                <span class="parent-val">Arugonda Madhusudhan</span>
+              </p>
+            </div>
+          </div>
+
+          <!-- GROOM SECOND -->
+          <div class="formal-card groom-formal">
+            <span class="formal-role">The Groom</span>
+            <h3 class="formal-name">Gurram Om Prakash</h3>
+            <div class="formal-parents">
+              <p class="formal-parent-row">
+                <span class="parent-badge">Mother</span>
+                <span class="parent-val">Gurram Aruna</span>
+              </p>
+              <p class="formal-parent-row">
+                <span class="parent-badge">Father</span>
+                <span class="parent-val">Gurram Chandra Shekar</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- 6 & 7. EVENT PRESENTATION (CINEMATIC MOMENTS)                       -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="events-container">
+      
+      <!-- THE WEDDING -->
+      <article id="event-wedding" class="cinematic-event-moment">
+        <div class="event-backdrop-wrap">
+          <img src="assets/photos/wedding.png" alt="Grand Indian Wedding Mandap" class="event-bg-img" />
+          <div class="event-scrim"></div>
+        </div>
+
+        <div class="event-details-card">
+          <span class="event-badge">Auspicious Muhurtham</span>
+          <h2 class="event-title">THE WEDDING</h2>
+          <p class="event-date-callout">06 DECEMBER 2026</p>
+
+          <div class="venue-block">
+            <h3 class="venue-name">BRR Madhura Conventions</h3>
+            <p class="venue-address">
+              Raghaipally, Veldanda, Amangal,<br />
+              Kalwakurthy, Telangana 509360
+            </p>
+          </div>
+
+          <div class="event-actions">
+            <a href="https://maps.app.goo.gl/fqrmJ2PVAR8yK6s38" target="_blank" rel="noopener noreferrer" class="btn-directions">
+              <span class="pin-icon">📍</span>
+              <span>GET DIRECTIONS</span>
+            </a>
+            <button class="btn-calendar" onclick="addToCalendar('wedding')">
+              <span>📅 Add to Calendar</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- CINEMATIC TRANSITION -->
+      <div class="cinematic-interlude">
+        <span class="interlude-line"></span>
+        <blockquote class="interlude-quote">“And the celebration continues…”</blockquote>
+        <span class="interlude-line"></span>
+      </div>
+
+      <!-- THE RECEPTION -->
+      <article id="event-reception" class="cinematic-event-moment">
+        <div class="event-backdrop-wrap">
+          <img src="assets/photos/reception.png" alt="Starlit Evening Garden Reception" class="event-bg-img" />
+          <div class="event-scrim"></div>
+        </div>
+
+        <div class="event-details-card">
+          <span class="event-badge">Evening of Joy & Music</span>
+          <h2 class="event-title">THE RECEPTION</h2>
+          <p class="event-date-callout">07 DECEMBER 2026</p>
+
+          <div class="venue-block">
+            <h3 class="venue-name">JMR Gardens</h3>
+            <p class="venue-address">
+              Nagarjuna Sagar Rd, Manneguda,<br />
+              Telangana 501510
+            </p>
+          </div>
+
+          <div class="event-actions">
+            <a href="https://maps.app.goo.gl/Zs6XnN945ZBEMjGV7" target="_blank" rel="noopener noreferrer" class="btn-directions">
+              <span class="pin-icon">📍</span>
+              <span>GET DIRECTIONS</span>
+            </a>
+            <button class="btn-calendar" onclick="addToCalendar('reception')">
+              <span>📅 Add to Calendar</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- 8. RSVP & GUEST BLESSINGS                                           -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section id="rsvp-section" class="rsvp-section">
+      <div class="rsvp-wrapper">
+        <span class="cinematic-eyebrow">Your Presence is Our Gift</span>
+        <h2 class="rsvp-title">CELEBRATE WITH US</h2>
+        <p class="rsvp-sub">Please confirm your attendance so we can welcome you warmly.</p>
+
+        <form id="rsvp-form" class="rsvp-form" onsubmit="handleRSVP(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="guest-name">Your Full Name</label>
+              <input type="text" id="guest-name" required placeholder="e.g. Anand & Family" />
+            </div>
+            <div class="form-group">
+              <label for="guest-phone">Phone / WhatsApp</label>
+              <input type="tel" id="guest-phone" placeholder="e.g. +91 98765 43210" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="attendance">Will You Be Attending?</label>
+              <select id="attendance" required>
+                <option value="both">Attending Both (Wedding & Reception)</option>
+                <option value="wedding">Attending Wedding Only (Dec 6)</option>
+                <option value="reception">Attending Reception Only (Dec 7)</option>
+                <option value="regret">Sending Love & Blessings from Afar</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="guest-count">Total Guests</label>
+              <select id="guest-count">
+                <option value="1">1 Person</option>
+                <option value="2" selected>2 Persons</option>
+                <option value="3">3 Persons</option>
+                <option value="4">4 Persons</option>
+                <option value="5+">5+ Family</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="guest-message">A Blessing or Message for Shalini & Om Prakash</label>
+            <textarea id="guest-message" rows="3" placeholder="Write your heartfelt wishes here..."></textarea>
+          </div>
+
+          <button type="submit" class="rsvp-submit-btn">
+            <span>CONFIRM ATTENDANCE & SEND BLESSINGS</span>
+            <span>✨</span>
+          </button>
+        </form>
+
+        <div id="rsvp-success" class="rsvp-success hidden">
+          <div class="success-icon">💐</div>
+          <h3>Thank you for your warmth and blessings!</h3>
+          <p>We cannot wait to celebrate with you.</p>
+        </div>
+
+        <div class="share-box">
+          <p>Want to send a direct message on WhatsApp?</p>
+          <a id="whatsapp-direct" href="https://wa.me/919989912345?text=Dear%20Shalini%20%26%20Om%20Prakash%2C%20congratulations%21%20We%20are%20so%20excited%20to%20celebrate%20with%20you%20on%20Dec%206th%20%26%207th%21" target="_blank" rel="noopener noreferrer" class="whatsapp-btn">
+            <span>💬 Send Direct WhatsApp Wish</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- FINAL REVERIE / FOOTER                                             -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <footer class="cinematic-footer">
+      <div class="footer-content">
+        <p class="footer-pre">With Love & Gratitude,</p>
+        <h2 class="footer-names">SHALINI & OM PRAKASH</h2>
+        <p class="footer-family">The Arugonda & Gurram Families</p>
+        <p class="footer-forever">OUR FOREVER BEGINS • 06.12.2026</p>
+        <div class="back-to-top">
+          <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="top-btn" aria-label="Back to top">
+            <span>↑ Back to Beginning</span>
+          </button>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
 </html>
