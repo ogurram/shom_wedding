@@ -1,0 +1,829 @@
+/* ═══════════════════════════════════════════════════════════════════
+   SHALINI & PRAKASH — CINEMATIC WEDDING ENTRANCE EXPERIENCE
+   Master Architecture, Palace Border Frame, and Front-Back Swing
+   ═══════════════════════════════════════════════════════════════════ */
+
+:root {
+  --gold-bright:     #fff6ce;
+  --gold-highlight:  #fbe893;
+  --gold-mid:        #d4a034;
+  --gold-deep:       #966914;
+  --champagne:       #f7ebd2;
+  --palace-black:    #070503;
+  
+  --font-serif:      'Cinzel', Georgia, serif;
+  --font-display:    'Cormorant Garamond', Garamond, serif;
+  --font-body:       'DM Sans', system-ui, sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background: var(--palace-black);
+  color: var(--champagne);
+  font-family: var(--font-body);
+  overflow: hidden;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   STAGE ROOT (Full Viewport Centered)
+   ══════════════════════════════════════════════════════════════════ */
+.intro {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(212, 160, 52, 0.14) 0%, transparent 68%),
+    radial-gradient(ellipse at 50% 50%, #16100a 0%, #0c0805 50%, var(--palace-black) 100%);
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.intro.leaving {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.palace-ambient-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 45%, rgba(255, 215, 110, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   THE PALACE STAGE (960 : 1280 Aspect Ratio Container)
+   Zoomed in to fill the view boldly and majestically
+   ══════════════════════════════════════════════════════════════════ */
+.palace-stage {
+  position: relative;
+  width: min(100vw, calc(100vh * 960 / 1280));
+  height: min(100vh, calc(100vw * 1280 / 960));
+  max-width: 1120px;
+  max-height: 1490px;
+  aspect-ratio: 960 / 1280;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1400px;
+  perspective-origin: 50% 50%;
+  transform: scale(1.14);
+  transform-origin: center 53%;
+  transition: transform 4.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.intro.opening .palace-stage,
+.intro.open .palace-stage {
+  transform: scale(1.18);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   LAYER 1: REVEALED PALACE INTERIOR (Behind the Archway)
+   ══════════════════════════════════════════════════════════════════ */
+.sanctum-chamber {
+  position: absolute;
+  left: 34.167%;
+  top: 33.203%;
+  width: 31.667%;
+  height: 39.141%;
+  border-radius: 50% 50% 0 0 / 30% 30% 0 0;
+  overflow: hidden;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.sanctum-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: blur(18px) brightness(0.45) saturate(0.85);
+  transform: scale(1.08);
+  transition: filter 3.8s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 4.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.intro.opening .sanctum-bg,
+.intro.open .sanctum-bg {
+  filter: blur(0px) brightness(1.05) saturate(1.1);
+  transform: scale(1);
+}
+
+.sanctum-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 40%, rgba(255, 215, 110, 0.3) 0%, transparent 70%);
+  mix-blend-mode: screen;
+  opacity: 0.3;
+  transition: opacity 3s ease;
+}
+
+.intro.opening .sanctum-glow,
+.intro.open .sanctum-glow {
+  opacity: 0.9;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   LAYER 2: LORD GANESHA ON PEACOCK SWING
+   Front-Back Swing Motion (Towards and Away), NOT side-to-side!
+   ══════════════════════════════════════════════════════════════════ */
+.ganesha-portal {
+  position: absolute;
+  left: 34.167%;
+  top: 33.203%;
+  width: 31.667%;
+  height: 39.141%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.ganesha-swing-rig {
+  position: relative;
+  width: 95%;
+  height: 94%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Natural suspension origin: top of hanging chains */
+  transform-origin: 50% 0%;
+  opacity: 0;
+  filter: blur(18px) brightness(0.4);
+  transform: perspective(800px) scale(0.92);
+  transition: opacity 2.8s cubic-bezier(0.22, 1, 0.36, 1),
+              filter 3.2s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 3.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ganesha-divine-halo {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 78%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 222, 128, 0.42) 0%, rgba(212, 160, 52, 0.14) 55%, transparent 75%);
+  filter: blur(12px);
+  z-index: 0;
+}
+
+.ganesha-art {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.65))
+          drop-shadow(0 0 16px rgba(255, 218, 120, 0.28));
+}
+
+.swing-floor-shadow {
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.5) 0%, transparent 70%);
+  filter: blur(6px);
+  z-index: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.intro.revealing .ganesha-swing-rig,
+.intro.open .ganesha-swing-rig {
+  opacity: 1;
+  filter: blur(0px) brightness(1.04);
+  transform: perspective(800px) scale(1) translateY(0);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   GANESHA FRONT-BACK SWING ANIMATION (Towards and Away)
+   Exactly 2 gentle back-and-forth swings, then settle!
+   ══════════════════════════════════════════════════════════════════ */
+.intro.swinging .ganesha-swing-rig {
+  animation: ganesha-front-back-swing 6.4s cubic-bezier(0.42, 0, 0.58, 1) forwards;
+}
+
+@keyframes ganesha-front-back-swing {
+  /* Resting State */
+  0% {
+    transform: perspective(800px) rotateX(0deg) scale(1) translateY(0);
+  }
+  /* SWING 1: Move slightly forward (towards viewer) */
+  18% {
+    transform: perspective(800px) rotateX(-5.5deg) scale(1.07) translateY(6px);
+  }
+  /* Move slightly backward (away into palace) */
+  36% {
+    transform: perspective(800px) rotateX(4.5deg) scale(0.94) translateY(-5px);
+  }
+  /* Center return */
+  50% {
+    transform: perspective(800px) rotateX(0deg) scale(1) translateY(0);
+  }
+  /* SWING 2: Move slightly forward (damped) */
+  68% {
+    transform: perspective(800px) rotateX(-3.2deg) scale(1.04) translateY(3px);
+  }
+  /* Move slightly backward (damped) */
+  84% {
+    transform: perspective(800px) rotateX(2.5deg) scale(0.97) translateY(-3px);
+  }
+  /* Settled in divine stillness */
+  100% {
+    transform: perspective(800px) rotateX(0deg) scale(1) translateY(0);
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   LAYER 3: LIGHT BEAM & FLOOR LIGHT SPILL
+   Realistic, soft, natural light spill onto the marble floor!
+   ══════════════════════════════════════════════════════════════════ */
+.door-light-beam {
+  position: absolute;
+  left: 50%;
+  top: 33.203%;
+  width: 4px;
+  height: 39.141%;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(255, 245, 180, 0.95) 20%,
+    rgba(255, 220, 110, 1)    50%,
+    rgba(255, 245, 180, 0.95) 80%,
+    transparent 100%
+  );
+  box-shadow: 0 0 25px 14px rgba(255, 215, 95, 0.75),
+              0 0 60px 35px rgba(255, 185, 45, 0.45);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 6;
+  transition: opacity 0.6s ease, width 3.5s ease;
+}
+
+.intro.opening .door-light-beam {
+  opacity: 1;
+  width: 26px;
+}
+.intro.open .door-light-beam {
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+/* Floor Light Spill Expanding from Open Doors */
+.floor-light-spill {
+  position: absolute;
+  top: 72.2%;
+  left: 50%;
+  transform: translateX(-50%) scaleY(0.3);
+  width: 42%;
+  height: 18%;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse 65% 55% at 50% 10%,
+    rgba(255, 225, 120, 0.55) 0%,
+    rgba(212, 160, 52, 0.25) 45%,
+    transparent 75%
+  );
+  mix-blend-mode: screen;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9;
+  transition: opacity 3.5s ease, transform 3.8s ease;
+}
+
+.intro.opening .floor-light-spill,
+.intro.open .floor-light-spill {
+  opacity: 0.88;
+  transform: translateX(-50%) scaleY(1);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   LAYER 4: ARCHITECTURAL DOORWAY & 3D PEACOCK DOUBLE DOORS
+   No clumsy dark shadows — clean, soft, natural edge shading!
+   ══════════════════════════════════════════════════════════════════ */
+.doorway-container {
+  position: absolute;
+  left: 34.167%;
+  top: 33.203%;
+  width: 31.667%;
+  height: 39.141%;
+  perspective: 1200px;
+  perspective-origin: 50% 50%;
+  z-index: 5;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.door-leaf {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: transform 4.6s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.door-leaf-left {
+  left: 0;
+  transform-origin: 0% 50%;
+}
+
+.door-leaf-right {
+  right: 0;
+  transform-origin: 100% 50%;
+}
+
+.door-img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+}
+
+.door-soft-edge {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.15);
+  transition: box-shadow 4.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.door-seam-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  background: rgba(8, 5, 2, 0.7);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.7);
+  z-index: 7;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+/* 3D Door Opening Transforms: Inward into palace */
+.intro.opening .door-leaf-left,
+.intro.open .door-leaf-left {
+  transform: rotateY(-74deg) translateZ(-14px);
+}
+.intro.opening .door-leaf-left .door-soft-edge,
+.intro.open .door-leaf-left .door-soft-edge {
+  /* Subtle realistic inner highlight/shadow, NOT clumsy heavy black */
+  box-shadow: inset -5px 0 10px rgba(0, 0, 0, 0.35),
+              inset 2px 0 6px rgba(255, 235, 160, 0.2);
+}
+
+.intro.opening .door-leaf-right,
+.intro.open .door-leaf-right {
+  transform: rotateY(74deg) translateZ(-14px);
+}
+.intro.opening .door-leaf-right .door-soft-edge,
+.intro.open .door-leaf-right .door-soft-edge {
+  box-shadow: inset 5px 0 10px rgba(0, 0, 0, 0.35),
+              inset -2px 0 6px rgba(255, 235, 160, 0.2);
+}
+
+.intro.opening .door-seam-line,
+.intro.open .door-seam-line {
+  opacity: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   LAYER 5: THE GRAND PALACE BORDER FRAME
+   Pink lotus arch crown, golden pillars, flanking elephants, marble floor!
+   ══════════════════════════════════════════════════════════════════ */
+.palace-frame-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  z-index: 10;
+  pointer-events: none;
+  filter: drop-shadow(0 0 30px rgba(0, 0, 0, 0.8));
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   LAYER 6: INTERACTIVE LION DOORKNOCKER (Upper Center Axis)
+   Close-up: Resting State vs Pressed State (Ring moves and returns)
+   ══════════════════════════════════════════════════════════════════ */
+.knocker-overlay {
+  position: absolute;
+  top: 49.2%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 15;
+  pointer-events: auto;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.knocker-btn {
+  position: relative;
+  width: 76px;
+  height: 98px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  perspective: 400px;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Subtle warm metallic sheen on hover */
+.knocker-halo-pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 235, 160, 0.28) 0%, rgba(212, 160, 52, 0.12) 50%, transparent 70%);
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.knocker-btn:hover .knocker-halo-pulse,
+.knocker-btn:focus-visible .knocker-halo-pulse {
+  opacity: 1;
+  transform: scale(1.15);
+}
+
+.knocker-btn:hover {
+  transform: scale(1.04);
+}
+.knocker-btn:focus-visible {
+  outline: 2px solid var(--gold-mid);
+  outline-offset: 4px;
+}
+
+/* Physical Animated Knocker Ring (Resting State -> Pressed State) */
+.knocker-physical-ring {
+  position: absolute;
+  top: 47%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 6px solid transparent;
+  border-top-color: #fbe893;
+  border-bottom-color: #966914;
+  border-left-color: #d4a034;
+  border-right-color: #d4a034;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.65), inset 0 2px 4px rgba(255, 245, 180, 0.4);
+  transform-origin: 50% 0%;
+  opacity: 0.15; /* Subtly overlays the rendered door ring */
+  transition: opacity 0.3s ease;
+}
+
+.knocker-btn:hover .knocker-physical-ring {
+  opacity: 0.55;
+}
+
+/* Pressed State Animation: Ring moves forward/upward and returns */
+.knocker-btn.knocking .knocker-physical-ring {
+  opacity: 0.85;
+  animation: ring-knock 0.52s ease-in-out forwards;
+}
+
+@keyframes ring-knock {
+  0%   { transform: translateX(-50%) perspective(300px) rotateX(0deg); }
+  28%  { transform: translateX(-50%) perspective(300px) rotateX(-38deg) translateY(-3px); }
+  56%  { transform: translateX(-50%) perspective(300px) rotateX(8deg); }
+  78%  { transform: translateX(-50%) perspective(300px) rotateX(-3deg); }
+  100% { transform: translateX(-50%) perspective(300px) rotateX(0deg); }
+}
+
+.intro.opening .knocker-overlay,
+.intro.open .knocker-overlay {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.94);
+  pointer-events: none;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   LAYER 7: BOTTOM INSTRUCTION (Moved to bottom marble floor, clearly visible)
+   Between the door threshold and rangoli!
+   ══════════════════════════════════════════════════════════════════ */
+.bottom-instruction {
+  position: absolute;
+  top: 75.2%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  z-index: 15;
+  pointer-events: none;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  width: 90%;
+}
+
+.hint-ornament-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.hint-dash {
+  width: 32px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold-mid), transparent);
+}
+
+.hint-gem {
+  font-size: 0.65rem;
+  color: var(--gold-highlight);
+  text-shadow: 0 0 8px rgba(251, 232, 147, 0.7);
+}
+
+.hint-text {
+  font-family: var(--font-serif);
+  font-size: clamp(0.72rem, 1.5vw, 0.88rem);
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--champagne);
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.95),
+    0 0 16px rgba(212, 160, 52, 0.5),
+    0 0 28px rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  text-align: center;
+  line-height: 1.35;
+}
+
+.hint-text .line-1 {
+  display: block;
+}
+
+.hint-text .line-2 {
+  display: block;
+  font-size: 0.94em;
+  letter-spacing: 0.3em;
+  color: var(--gold-highlight);
+}
+
+.intro.opening .bottom-instruction,
+.intro.open .bottom-instruction {
+  opacity: 0;
+  transform: translateX(-50%) translateY(12px);
+  pointer-events: none;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   LAYER 8: COUPLE NAMES & BLESSING (On Marble Floor)
+   ══════════════════════════════════════════════════════════════════ */
+.final-names {
+  position: absolute;
+  bottom: 2.2%;
+  left: 50%;
+  transform: translateX(-50%) translateY(16px);
+  text-align: center;
+  z-index: 16;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.8s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 1.8s cubic-bezier(0.22, 1, 0.36, 1);
+  width: 90%;
+}
+
+.final-names.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.blessing-invocation {
+  font-family: var(--font-display);
+  font-size: clamp(0.85rem, 1.8vw, 1.1rem);
+  letter-spacing: 0.15em;
+  color: var(--gold-highlight);
+  margin-bottom: 2px;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8), 0 0 14px rgba(212, 160, 52, 0.5);
+}
+
+.final-names .eyebrow {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+  color: var(--champagne);
+  opacity: 0.9;
+  margin-bottom: 2px;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+}
+
+.couple-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.3rem, 3.2vw, 2.2rem);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--gold-bright);
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.9),
+    0 0 20px rgba(251, 232, 147, 0.45),
+    0 0 35px rgba(212, 160, 52, 0.3);
+}
+
+.couple-title span {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.88em;
+  color: var(--gold-mid);
+  margin: 0 0.16em;
+}
+
+.wedding-date-line {
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-serif);
+  font-size: clamp(0.62rem, 1.2vw, 0.72rem);
+  letter-spacing: 0.24em;
+  color: var(--gold-highlight);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+}
+
+.date-ornament {
+  font-size: 0.58rem;
+  color: var(--gold-mid);
+}
+
+.btn-continue-invite {
+  margin-top: 10px;
+  background: linear-gradient(135deg, rgba(212, 160, 52, 0.3) 0%, rgba(150, 105, 20, 0.5) 100%);
+  border: 1px solid var(--gold-mid);
+  color: var(--gold-bright);
+  font-family: var(--font-serif);
+  font-size: clamp(0.64rem, 1.2vw, 0.74rem);
+  letter-spacing: 0.22em;
+  padding: 6px 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  pointer-events: auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6), 0 0 12px rgba(212, 160, 52, 0.3);
+}
+
+.btn-continue-invite:hover {
+  background: linear-gradient(135deg, rgba(212, 160, 52, 0.5) 0%, rgba(150, 105, 20, 0.7) 100%);
+  box-shadow: 0 4px 20px rgba(212, 160, 52, 0.5);
+  transform: translateY(-2px);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   WEDDING WEBSITE INVITATION SECTION
+   ══════════════════════════════════════════════════════════════════ */
+.website {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  background: var(--palace-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1.4s cubic-bezier(0.4, 0, 0.2, 1),
+              visibility 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 24px;
+}
+
+.website.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.website-ambient-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 30%, rgba(212, 160, 52, 0.14) 0%, transparent 60%),
+    radial-gradient(ellipse at center, #18110a 0%, var(--palace-black) 100%);
+}
+
+.website-card {
+  position: relative;
+  z-index: 1;
+  width: min(92vw, 560px);
+  padding: 48px 36px;
+  background: rgba(18, 14, 10, 0.9);
+  border: 1.5px solid var(--gold-mid);
+  border-radius: 12px;
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.8),
+    0 0 35px rgba(212, 160, 52, 0.2),
+    inset 0 0 30px rgba(212, 160, 52, 0.05);
+  text-align: center;
+}
+
+.card-subtitle {
+  font-family: var(--font-serif);
+  font-size: 0.74rem;
+  letter-spacing: 0.26em;
+  color: var(--gold-mid);
+  margin-bottom: 12px;
+}
+
+.card-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 2.6rem);
+  color: var(--gold-bright);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  margin-bottom: 20px;
+}
+
+.card-divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--gold-mid), transparent);
+  margin: 0 auto 24px;
+}
+
+.card-text {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--champagne);
+  margin-bottom: 32px;
+}
+
+.card-details {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-top: 1px solid rgba(212, 160, 52, 0.2);
+  padding-top: 24px;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detail-label {
+  font-family: var(--font-serif);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  color: var(--gold-mid);
+}
+
+.detail-val {
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  color: var(--champagne);
+}
+
+.btn-replay {
+  margin-top: 24px;
+  background: transparent;
+  border: 1px solid var(--gold-mid);
+  color: var(--gold-bright);
+  font-family: var(--font-serif);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  padding: 8px 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-replay:hover {
+  background: rgba(212, 160, 52, 0.2);
+  transform: translateY(-2px);
+}

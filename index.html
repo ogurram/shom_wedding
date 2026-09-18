@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shalini &amp; Prakash — Wedding Invitation</title>
+    <meta name="description" content="You are cordially invited to the grand wedding of Shalini and Prakash. Tap the antique lion doorknocker to enter the royal palace." />
+    
+    <!-- Google Fonts: Royal serif typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main id="intro" class="intro" aria-label="Grand wedding entrance — tap the doorknocker to enter">
+
+      <!-- Ambient Palace Lighting -->
+      <div class="palace-ambient-glow" aria-hidden="true"></div>
+
+      <!-- ═══ THE PALACE STAGE (Exact 3:4 Proportional Stage for border.png) ═══ -->
+      <div class="palace-stage" id="palace-stage">
+
+        <!-- LAYER 1: REVEALED PALACE INTERIOR (Behind the arch opening) -->
+        <div class="sanctum-chamber" aria-hidden="true">
+          <img src="assets/interior_hall.png" class="sanctum-bg" alt="" />
+          <div class="sanctum-glow"></div>
+        </div>
+
+        <!-- LAYER 2: LORD GANESHA ON HANGING SWING (Front-to-back swing) -->
+        <div class="ganesha-portal" aria-hidden="true">
+          <div class="ganesha-swing-rig" id="ganesha-rig">
+            <div class="ganesha-divine-halo"></div>
+            <img src="assets/ganesha.png" class="ganesha-art" alt="Lord Ganesha on Royal Swing" />
+            <div class="swing-floor-shadow"></div>
+          </div>
+        </div>
+
+        <!-- LAYER 3: LIGHT BEAM & FLOOR LIGHT SPILL -->
+        <div class="door-light-beam" id="light-beam" aria-hidden="true"></div>
+        <div class="floor-light-spill" id="floor-spill" aria-hidden="true"></div>
+
+        <!-- LAYER 4: ARCHITECTURAL DOORWAY & 3D PEACOCK DOUBLE DOORS -->
+        <div class="doorway-container" id="doorway">
+          <!-- Left peacock door leaf -->
+          <div class="door-leaf door-leaf-left" id="door-left">
+            <img src="assets/door_leaf_left.png" class="door-img" alt="Left peacock palace door" />
+            <div class="door-soft-edge"></div>
+          </div>
+          <!-- Right peacock door leaf -->
+          <div class="door-leaf door-leaf-right" id="door-right">
+            <img src="assets/door_leaf_right.png" class="door-img" alt="Right peacock palace door" />
+            <div class="door-soft-edge"></div>
+          </div>
+          <!-- Seam shadow -->
+          <div class="door-seam-line" id="door-seam"></div>
+        </div>
+
+        <!-- LAYER 5: THE GRAND ARCHITECTURAL PALACE BORDER FRAME -->
+        <!-- Contains the pink lotus crown, the columns, the elephants, and the marble floor with rangoli -->
+        <img src="assets/palace_frame.png" class="palace-frame-img" alt="Palace entrance frame with lotus crown and royal elephants" aria-hidden="true" />
+
+        <!-- LAYER 6: INTERACTIVE LION DOORKNOCKER (Upper Center Axis) -->
+        <div class="knocker-overlay" id="knocker-zone">
+          <button
+            class="knocker-btn"
+            id="door-knocker"
+            type="button"
+            aria-label="Open the wedding entrance"
+          >
+            <!-- Animated 3D Knocker Ring for Pressed State -->
+            <span class="knocker-physical-ring" id="knocker-ring" aria-hidden="true"></span>
+            <span class="knocker-halo-pulse" aria-hidden="true"></span>
+          </button>
+        </div>
+
+        <!-- LAYER 7: BOTTOM INSTRUCTION (Moved to bottom marble floor, clearly visible) -->
+        <div class="bottom-instruction" id="knocker-hint">
+          <div class="hint-ornament-line">
+            <span class="hint-dash"></span>
+            <span class="hint-gem">✦</span>
+            <span class="hint-dash"></span>
+          </div>
+          <p class="hint-text">
+            <span class="line-1">TAP THE DOORKNOCKER</span>
+            <span class="line-2">TO ENTER</span>
+          </p>
+          <div class="hint-ornament-line">
+            <span class="hint-dash"></span>
+            <span class="hint-gem">✦</span>
+            <span class="hint-dash"></span>
+          </div>
+        </div>
+
+        <!-- LAYER 8: COUPLE NAMES & CEREMONIAL BLESSING (Over marble floor) -->
+        <div id="final-names" class="final-names" aria-live="polite">
+          <p class="blessing-invocation">|| श्री गणेशाय नमः ||</p>
+          <p class="eyebrow">Together with their families, cordially invite you to celebrate the wedding of</p>
+          <h1 class="couple-title">Shalini <span>&amp;</span> Prakash</h1>
+          <div class="wedding-date-line">
+            <span class="date-ornament">✦</span>
+            <span>DECEMBER 12, 2026</span>
+            <span class="date-ornament">✦</span>
+          </div>
+          <button type="button" class="btn-continue-invite" id="btn-continue" aria-label="View wedding invitation details">
+            <span>ENTER CELEBRATION</span>
+            <span class="arrow-down">▾</span>
+          </button>
+        </div>
+
+      </div><!-- /.palace-stage -->
+
+    </main><!-- /#intro -->
+
+    <!-- ═══ WEDDING WEBSITE INVITATION SECTION ═══ -->
+    <section id="website" class="website" aria-label="Wedding website content">
+      <div class="website-ambient-bg"></div>
+      <div class="website-card">
+        <p class="card-subtitle">WE ARE GETTING MARRIED</p>
+        <h2 class="card-title">Shalini &amp; Prakash</h2>
+        <div class="card-divider"></div>
+        <p class="card-text">
+          We invite you to be a part of this sacred union of two souls, surrounded by divine blessings, family, and lifelong memories.
+        </p>
+        <div class="card-details">
+          <div class="detail-item">
+            <span class="detail-label">DATE</span>
+            <span class="detail-val">Saturday, 12 December 2026</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">MUHURTHAM</span>
+            <span class="detail-val">10:30 AM – 11:45 AM</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">VENUE</span>
+            <span class="detail-val">The Royal Grand Palace, Bangalore</span>
+          </div>
+        </div>
+        <button type="button" class="btn-replay" id="btn-replay">
+          <span>↺ REPLAY ENTRANCE</span>
+        </button>
+      </div>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>
