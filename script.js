@@ -359,7 +359,7 @@
     }
 
     // Story navigation active link updater
-    const sections = document.querySelectorAll('#prologue, #wedding-reveal, #event-wedding, #event-reception, #rsvp-section');
+    const sections = document.querySelectorAll('#prologue, #wedding-reveal, #event-wedding, #event-reception');
     const navLinks = document.querySelectorAll('.nav-link');
 
     if ('IntersectionObserver' in window && sections.length > 0) {
@@ -404,32 +404,5 @@
     window.open(gcalUrl, '_blank');
   };
 
-  // ─── RSVP SUBMISSION HANDLER ──────────────────────────────────────
-  window.handleRSVP = function (e) {
-    e.preventDefault();
-    const guestName = document.querySelector('#guest-name')?.value;
-    const phone     = document.querySelector('#guest-phone')?.value;
-    const attendance = document.querySelector('#attendance')?.value;
-    const guestCount = document.querySelector('#guest-count')?.value;
-    const message   = document.querySelector('#guest-message')?.value;
-
-    const rsvpData = { guestName, phone, attendance, guestCount, message, timestamp: new Date().toISOString() };
-    try {
-      localStorage.setItem('wedding_rsvp_' + Date.now(), JSON.stringify(rsvpData));
-    } catch (err) {}
-
-    // Show success feedback
-    const form = document.querySelector('#rsvp-form');
-    const success = document.querySelector('#rsvp-success');
-    if (form) form.classList.add('hidden');
-    if (success) success.classList.remove('hidden');
-
-    // Update WhatsApp link with prefilled personalized wish
-    const waLink = document.querySelector('#whatsapp-direct');
-    if (waLink) {
-      const waText = encodeURIComponent(`Dear Shalini & Om Prakash,\n\nWarmest congratulations on your wedding! This is ${guestName || 'a family friend'}. ${message ? '"' + message + '" ' : ''}Looking forward to celebrating with you on Dec 6th & 7th!`);
-      waLink.href = `https://wa.me/919989912345?text=${waText}`;
-    }
-  };
-
 })();
+
